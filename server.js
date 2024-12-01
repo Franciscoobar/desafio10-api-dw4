@@ -1,9 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Product = require('./Product.js');
+require('dotenv').config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 
 app.use(express.json());
@@ -55,7 +56,7 @@ app.delete('/eliminar-producto/:id', async (req, res) => {
     }
 });
 
-const mongoURI = 'mongodb+srv://franciscoagustinbar9:5IKxR7aBpwKO1jqO@mibasededatos.1tgkd.mongodb.net/?retryWrites=true&w=majority';
+const mongoURI = process.env.MONGODB_URI;
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Conexión exitosa a MongoDB Atlas'))
